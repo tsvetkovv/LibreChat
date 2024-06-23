@@ -19,6 +19,7 @@ services:
       - librechat_isolated
     command: "true"
     entrypoint: "true"
+    volumes: !reset []
 
   mongodb:
     ports: !reset [ ]  # Remove any exposed ports
