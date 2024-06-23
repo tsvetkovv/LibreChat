@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   client:
-    ports:
+    ports: !reset
       - "18080:80"
       - "18443:443"
     networks:
@@ -14,7 +14,7 @@ services:
       start_period: 40s
 
   api:
-    ports: []  # Remove any exposed ports
+    ports: !reset []  # Remove any exposed ports
     networks:
       - librechat_isolated
     healthcheck:
@@ -25,22 +25,22 @@ services:
       start_period: 40s
 
   mongodb:
-    ports: []  # Remove any exposed ports
+    ports: !reset []  # Remove any exposed ports
     networks:
       - librechat_isolated
 
   meilisearch:
-    ports: []  # Remove any exposed ports
+    ports: !reset []  # Remove any exposed ports
     networks:
       - librechat_isolated
 
   vectordb:
-    ports: []  # Remove any exposed ports
+    ports: !reset []  # Remove any exposed ports
     networks:
       - librechat_isolated
 
   rag_api:
-    ports: []  # Remove any exposed ports
+    ports: !reset []  # Remove any exposed ports
     networks:
       - librechat_isolated
 
