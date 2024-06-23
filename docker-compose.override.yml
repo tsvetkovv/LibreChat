@@ -1,5 +1,18 @@
 version: "3.8"
 services:
+  api:
+    ports: !reset
+      - "30080:3080"
+    networks:
+      - librechat_isolated
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:3080/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+
   client:
     ports: !reset
       - "18080:80"
@@ -7,40 +20,30 @@ services:
     networks:
       - librechat_isolated
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      test: [ "CMD", "curl", "-f", "http://localhost:80/health" ]
       interval: 30s
       timeout: 10s
       retries: 3
       start_period: 40s
 
-  api:
-    ports: !reset []  # Remove any exposed ports
-    networks:
-      - librechat_isolated
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3080/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
 
   mongodb:
-    ports: !reset []  # Remove any exposed ports
+    ports: !reset [ ]  # Remove any exposed ports
     networks:
       - librechat_isolated
 
   meilisearch:
-    ports: !reset []  # Remove any exposed ports
+    ports: !reset [ ]  # Remove any exposed ports
     networks:
       - librechat_isolated
 
   vectordb:
-    ports: !reset []  # Remove any exposed ports
+    ports: !reset [ ]  # Remove any exposed ports
     networks:
       - librechat_isolated
 
   rag_api:
-    ports: !reset []  # Remove any exposed ports
+    ports: !reset [ ]  # Remove any exposed ports
     networks:
       - librechat_isolated
 
