@@ -1,8 +1,7 @@
 version: "3.8"
 services:
   api:
-    ports: !reset
-      - "30080:3080"
+    ports: !reset [ ]  # Remove any exposed ports
     networks:
       - librechat_isolated
     healthcheck:
