@@ -1,7 +1,8 @@
 version: "3.8"
 services:
   api:
-    ports: !reset [ ]  # Remove any exposed ports
+    ports: !reset  # Remove any exposed ports
+      - "30080:3080"
     networks:
       - librechat_isolated
     healthcheck:
@@ -13,18 +14,11 @@ services:
 
 
   client:
-    ports: !reset
-      - "18080:80"
-      - "18443:443"
+    ports: !reset []
     networks:
       - librechat_isolated
-    healthcheck:
-      test: [ "CMD", "curl", "-f", "http://localhost:80/health" ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
+    command: "true"
+    entrypoint: "true"
 
   mongodb:
     ports: !reset [ ]  # Remove any exposed ports
